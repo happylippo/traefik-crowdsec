@@ -1,0 +1,26 @@
+networks:
+  proxy:
+    name: ${PROXY_NETWORK_NAME:-proxy}
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: ${PROXY_NETWORK_SUBNET:-172.31.128.0/24}
+        - subnet: ${PROXY_NETWORK_IPV6_SUBNET:-fd00:1:be:a::/64}
+  crowdsec:
+    name: ${CROWDSEC_NETWORK_NAME:-crowdsec}
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: ${CROWDSEC_NETWORK_SUBNET:-172.31.64.0/24}
+        - subnet: ${CROWDSEC_NETWORK_IPV6_SUBNET:-fd00:1:be:b::/64}
+  socket_proxy:
+    name: ${SOCKET_PROXY_NETWORK_NAME:-socket_proxy}
+    driver: bridge
+    internal: true
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: ${SOCKET_PROXY_NETWORK_SUBNET:-172.31.192.0/24}
+        - subnet: ${SOCKET_PROXY_NETWORK_IPV6_SUBNET:-fd00:1:be:c::/64}

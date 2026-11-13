@@ -1,0 +1,6 @@
+http:
+  middlewares:
+    basic-auth:
+      basicAuth:
+        usersFile: /etc/traefik/.htpasswd
+        removeHeader: true
