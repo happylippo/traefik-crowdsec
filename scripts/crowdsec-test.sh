@@ -30,11 +30,11 @@ docker exec crowdsec cscli metrics
 
 test_attack() {
     local NAME="$1"
-    local PATH="$2"
+    local REQUEST_PATH="$2"
     local CODE
 
     printf "  -> Teste %-40s" "$NAME"
-    CODE=$(curl -ks -o /dev/null -w '%{http_code}' -- "${URL}${PATH}")
+    CODE=$(curl -ks -o /dev/null -w '%{http_code}' -- "${URL}${REQUEST_PATH}")
 
     if [[ "$CODE" == "403" ]]; then
         echo -e "${GREEN}Blockiert (HTTP Code: ${CODE}) ✓${RESET}"
