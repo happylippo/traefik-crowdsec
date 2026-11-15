@@ -64,6 +64,18 @@ networks:
 
 `down` löscht keine persistenten Daten. Für Backups sichere `.env`, `data/` und das CrowdSec-Datenverzeichnis.
 
+## CrowdSec AppSec testen
+
+Mit `./scripts/crowdsec-test.sh` kannst du die AppSec/WAF-Regeln gegen deine Traefik-Instanz prüfen. Das Skript fragt die Traefik-Domain ab, zeigt die CrowdSec-Metriken vor und nach den Tests und sendet acht simulierte Anfragen für SQL-Injection, XSS, LFI, WordPress-Dateipfade sowie bekannte CVEs und exponierte Dateien. HTTP 403 gilt dabei als blockierte Anfrage.
+
+Führe es auf einem Host mit Bash, curl, Docker-Zugriff und laufendem Compose-Dienst `crowdsec` aus:
+
+```bash
+./scripts/crowdsec-test.sh
+```
+
+Die Tests erzeugen absichtlich verdächtige Anfragen. Das Skript löscht vorab alle bestehenden CrowdSec-Decisions im Container `crowdsec`; führe es daher nur aus, wenn du diese Bans wirklich entfernen möchtest. Nicht jede Anfrage muss blockiert werden: Das Ergebnis hängt von aktivierten AppSec-Regeln und der Erreichbarkeit des Ziel-Hosts ab.
+
 ## Struktur
 
 - `compose/`: Compose-Fragmente
