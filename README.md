@@ -8,7 +8,7 @@ Ein lokaler Docker-Compose-Stack für HTTPS-Routing, Traefik-Dashboard-Schutz un
 | --- | --- |
 | Traefik | HTTPS-Routing über TCP/UDP 443, Docker- und Dateiprovider, Basic Auth und CrowdSec-Bouncer |
 | CrowdSec | Erkennung und Abwehr anhand von Traefik-Logs einschließlich AppSec/WAF |
-| Socket-Proxy | Begrenzt den Docker-API-Zugriff für Traefik und CrowdSec |
+| Socket-Proxy | Stellt ausschließlich Traefik einen eingeschränkten Docker-API-Zugriff bereit; CrowdSec benötigt ihn nicht |
 
 ## Voraussetzungen
 
