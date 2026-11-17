@@ -74,6 +74,10 @@ copy_sample() {
 copy_sample data/traefik/traefik.yml.sample data/traefik/traefik.yml
 copy_sample data/traefik/dynamic_conf/basic-auth.yml.sample data/traefik/dynamic_conf/basic-auth.yml
 copy_sample data/crowdsec/.env.sample data/crowdsec/.env
+
+# CrowdSec now reads mounted log files and no longer needs the Docker API.
+# Remove this legacy variable from existing installations as well.
+sed -i '/^[[:space:]]*DOCKER_HOST=/d' data/crowdsec/.env
 copy_sample data/crowdsec/acquis.yaml.sample data/crowdsec/acquis.yaml
 copy_sample data/crowdsec/appsec.yaml.sample data/crowdsec/appsec.yaml
 copy_sample data/crowdsec/crs-plugins/custom/http-version-before.conf data/crowdsec/data/crs-plugins/custom/http-version-before.conf
